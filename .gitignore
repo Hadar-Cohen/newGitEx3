@@ -45,7 +45,7 @@ TestResult.xml
 [Dd]ebugPS/
 [Rr]eleasePS/
 dlldata.c
-
+*.config
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 

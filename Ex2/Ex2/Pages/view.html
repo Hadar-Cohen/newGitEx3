@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+
+    </script>
+
+    <link href="myStyle.css" rel="stylesheet" />
+
+    <script src="../Scripts/ajaxCalls.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            imagePath = "https://image.tmdb.org/t/p/w500/";
+
+            if (localStorage.user != null) {
+                user = JSON.parse(localStorage["user"]);
+                $("#userName").text("Hello " + user.FirstName + " " + user.LastName);
+                //document.getElementById("signUp").style.visibility = "hidden";
+                document.getElementById("login").style.visibility = "hidden";
+                document.getElementById("exit").style.visibility = "visibility";
+            }
+            else {
+                //document.getElementById("signUp").style.visibility = "visibility";
+                document.getElementById("login").style.visibility = "visibility";
+                document.getElementById("exit").style.visibility = "hidden";
+            }
+
+            $("#phView").html("");
+            str = "<select id='series' onchange=showEpisode(this)>";
+            str += "<option>select</option>";
+            let api = "../api/Episodes";
+            ajaxCall("GET", api, "", getSeriesSuccessCB, getSeriesErrorCB);
+        });
+    </script>
+
+    <script src="../Scripts/view.js"></script>
+</head>
+<body>
+    <div id="navbar">
+        <div class="BTN">
+            <button id="login" onclick="document.location='login.html'">login</button>
+            <button id="exit" onclick="exit()">exit</button>
+            <label id="userName"> </label>
+        </div>
+
+    </div>
+    <!--<div id="test">-->
+    <button id="home_page" onclick="document.location='insert_signup.html'">Home</button>
+    <!--</div>-->
+    <div id="title"> My Series</div>
+    <div id="phView"></div>
+    <table id="episodesView"></table>
+
+
+</body>
+</html>
